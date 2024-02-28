@@ -1,0 +1,194 @@
+import {Dimensions, StyleSheet} from 'react-native';
+const styles = StyleSheet.create({
+  horizontalLine: {
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    backgroundColor: '#242526',
+  },
+  Line: {
+    height: 0.3,
+    backgroundColor: 'white',
+  },
+  //   --------------------
+  container: {
+    flex: 1,
+    backgroundColor: 'white',
+  },
+  recommend_header: {
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 20,
+    paddingVertical: 6,
+    gap: 10,
+  },
+  recommend_header_input: {},
+  recommend_header_search: {
+    borderColor: '#EE4E2E',
+    borderWidth: 1,
+    width: 300,
+    height: 37,
+    fontSize: 13,
+    fontWeight: '700',
+    paddingHorizontal: 10,
+    borderRadius: 10,
+  },
+  recommend_header_nav: {
+    flexDirection: 'row',
+    gap: 10,
+    paddingRight: 5,
+  },
+  recommend_header_nav_icon: {
+    fontSize: 25,
+    color: '#EE4E2E',
+  },
+  //   ----------------------------
+  Notification_Title: {
+    backgroundColor: '#242526',
+    flexDirection: 'row',
+    paddingLeft: 10,
+    gap: 10,
+  },
+  Notification_Title2: {
+    backgroundColor: '#242526',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    padding: 10,
+    gap: 10,
+  },
+  Notification_Title_Text: {
+    color: 'white',
+    fontWeight: '700',
+    fontSize: 18,
+    marginVertical: 12,
+    backgroundColor: '#494A54',
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 20,
+  },
+  Notification_Title2_Text1: {
+    color: 'white',
+    fontWeight: '700',
+    fontSize: 22,
+  },
+  Notification_Title2_Text2: {
+    color: '#2374E1',
+    fontSize: 17,
+    marginRight: 5,
+  },
+  Friends_List: {
+    backgroundColor: '#242526',
+  },
+  Friends_Item: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    gap: 15,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
+  },
+  Friends_Item_Image: {
+    position: 'relative',
+  },
+  Friends_Item_Image_Image: {
+    width: 95,
+    height: 95,
+    borderRadius: 50,
+  },
+  Friends_Item_Image_Icon: {
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    backgroundColor: '#3B5999',
+    paddingHorizontal: 3,
+    paddingVertical: 2,
+    borderRadius: 20,
+  },
+  Friends_Item_Image_Icon_Icon: {
+    color: 'white',
+    fontSize: 20,
+  },
+  Friends_Item_Content: {
+    flex: 1,
+    gap: 5,
+  },
+  Friend_Item_Content_Top: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  Friends_Item_Content_Text: {
+    color: 'white',
+    fontSize: 15,
+    maxHeight: 60,
+  },
+  Friends_Item_Content_Name: {
+    fontWeight: '500',
+    fontSize: 18,
+  },
+  Friends_Item_Content_Time: {
+    color: 'gray',
+    fontSize: 12,
+  },
+  // Friend_Item_Content_Bottom: {
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  // },
+  Friend_Item_Content_Bottom_Button: {
+    flexDirection: 'row',
+    gap: 10,
+  },
+  Friend_Item_Content_Bottom_Button1: {
+    width: 130,
+    backgroundColor: '#2374E1',
+    paddingVertical: 8,
+    borderRadius: 5,
+  },
+  Friend_Item_Content_Bottom_Button2: {
+    width: 130,
+    backgroundColor: '#3A3B3C',
+    paddingVertical: 8,
+    borderRadius: 5,
+  },
+  Friend_Item_Content_Bottom_Text: {
+    color: 'white',
+    fontSize: 15,
+    fontWeight: '700',
+    textAlign: 'center',
+  },
+  Friend_Item_Content_Bottom_Text_Content: {
+    color: 'white',
+    fontSize: 15,
+    fontWeight: '700',
+    textAlign: 'left',
+  },
+  // Friend_Item_Content_Center: {
+  //   flexDirection: 'row',
+  //   alignItems: 'center',
+  // },
+  Friends_Item_Content_Center_MutualFriendContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 5,
+    gap: 5,
+  },
+  Friends_Item_Content_Center_MutualFriend: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  Friends_Item_Image_MutualFriend: {
+    width: 30,
+    height: 30,
+    marginLeft: -7,
+    borderRadius: 15,
+    borderWidth: 3,
+    borderColor: '#242526',
+  },
+  Friends_Item_Content_Sl_MutualFriend: {
+    fontSize: 13,
+    color: 'white',
+  },
+});
+export default styles;

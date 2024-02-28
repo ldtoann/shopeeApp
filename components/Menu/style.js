@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   Menu_tab: {
-    paddingVertical: 10,
+    paddingVertical: 5,
     alignItems: 'center',
     flex: 1,
     borderTopWidth: 1.5,
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     marginBottom: 3,
   },
   Menu_tab_Icon_IconIcon: {
-    fontSize: 23,
+    fontSize: 20,
     color: '#EE4E2E',
   },
   Menu_tab_Text: {
