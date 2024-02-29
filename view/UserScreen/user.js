@@ -14,7 +14,7 @@ import ProductList1 from '../../components/ProductList1/index';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const Recommend = ({navigation}) => {
+const ScreenUser = ({navigation}) => {
   const navigateRecommend = () => {
     navigation.navigate('recommend');
   };
@@ -810,4 +810,4 @@ const Recommend = ({navigation}) => {
   );
 };
 
-export default Recommend;
+export default ScreenUser;
