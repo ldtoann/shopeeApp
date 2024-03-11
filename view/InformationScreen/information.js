@@ -33,6 +33,12 @@ const ScreenInformation = ({navigation}) => {
   const navigateUser = () => {
     navigation.navigate('user');
   };
+  const handleGokhuyenmai = () => {
+    navigation.navigate('khuyenmai');
+  };
+  const handleGoInformartionLine = () => {
+    navigation.navigate('informationline');
+  };
   const informationData = [
     {
       id: '01',
@@ -73,7 +79,9 @@ const ScreenInformation = ({navigation}) => {
         <View>
           <View style={styles.user_main}>
             <View style={styles.user_main_button}>
-              <TouchableOpacity style={styles.user_main_napthedichvu_btn}>
+              <TouchableOpacity
+                style={styles.user_main_napthedichvu_btn}
+                onPress={handleGokhuyenmai}>
                 <View style={styles.user_main_napthedichvu_btn_left}>
                   <Icon
                     style={styles.user_main_food_btn_left_icon}
@@ -251,7 +259,9 @@ const ScreenInformation = ({navigation}) => {
     } else if (item.type === 'Repeat') {
       return (
         <View style={styles.information_list}>
-          <View style={styles.information_item}>
+          <TouchableOpacity
+            style={styles.information_item}
+            onPress={handleGoInformartionLine}>
             <View style={styles.information_item_left}>
               <Image
                 style={styles.information_item_left_image}
@@ -269,7 +279,7 @@ const ScreenInformation = ({navigation}) => {
                 07:03 22-02-2024
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
           <View style={styles.linengang}></View>
         </View>
       );
