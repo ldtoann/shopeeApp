@@ -9,6 +9,8 @@ import User from './UserScreen/user';
 import Video from './VideoScreen/video';
 import Mall from './MallScreen/mall';
 import Live from './LiveScreen/live';
+import Khuyenmai from './InformationScreen/InformationScreen(khuyenmai)/khuyenmai';
+import Informationline from './InformationLineScreen/informationline';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +18,7 @@ const RootComponent = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="information"
+        initialRouteName="helloScreen"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="helloScreen" component={HelloScreen} />
         <Stack.Screen name="recommend" component={Recommend} />
@@ -26,6 +28,8 @@ const RootComponent = () => {
         <Stack.Screen name="information" component={Information} />
         <Stack.Screen name="user" component={User} />
         <Stack.Screen name="cart" component={Cart} />
+        <Stack.Screen name="khuyenmai" component={Khuyenmai} />
+        <Stack.Screen name="informationline" component={Informationline} />
       </Stack.Navigator>
     </NavigationContainer>
   );
