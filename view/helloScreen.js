@@ -7,7 +7,7 @@ const HelloScreen = () => {
   const navigation = useNavigation();
   useEffect(() => {
     const timer = setTimeout(() => {
-      navigation.replace('recommend'); // Chuyển hướng đến màn hình chính
+      navigation.replace('login'); // Chuyển hướng đến màn hình chính
     }, 3000); // 3000 milliseconds = 3 giây
     return () => clearTimeout(timer);
   }, []);

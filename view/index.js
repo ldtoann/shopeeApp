@@ -12,6 +12,7 @@ import Live from './LiveScreen/live';
 import Khuyenmai from './InformationScreen/InformationScreen(khuyenmai)/khuyenmai';
 import Informationline from './InformationLineScreen/informationline';
 import Flashsale from './FlashsaleScreen/flashsale';
+import Login from './LoginScreen/login';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,7 @@ const RootComponent = () => {
         initialRouteName="helloScreen"
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="helloScreen" component={HelloScreen} />
+        <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="recommend" component={Recommend} />
         <Stack.Screen name="mall" component={Mall} />
         <Stack.Screen name="video" component={Video} />
