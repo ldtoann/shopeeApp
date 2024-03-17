@@ -6,14 +6,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import styles from './style';
 
-const Index = ({
-  goRecommend,
-  goMall,
-  goVideo,
-  goLive,
-  goInformation,
-  goUser,
-}) => {
+const Index = ({goRecommend, goMall, goInformation, goUser, goFlashsale}) => {
   const [activeTab, setActiveTab] = useState('Recommend');
   const handlePress = tab => {
     setActiveTab(tab);
@@ -24,11 +17,8 @@ const Index = ({
       case 'Mall':
         goMall();
         break;
-      case 'Video':
-        goVideo();
-        break;
-      case 'Live':
-        goLive();
+      case 'Flashsale':
+        goFlashsale();
         break;
       case 'Information':
         goInformation();
@@ -86,45 +76,24 @@ const Index = ({
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.Menu_tab, activeTab === 'Video' && styles.activeTab]}
-        onPress={() => handlePress('Video')}>
+        style={[styles.Menu_tab, activeTab === 'Flashsale' && styles.activeTab]}
+        onPress={() => handlePress('Flashsale')}>
         <Text style={styles.Menu_tab_Icon}>
           <Icon
             style={[
               styles.Menu_tab_Icon_IconIcon,
               activeTab === 'Mall' && styles.activeIcon,
             ]}
-            name="tv"
+            name="bolt"
             solid
           />
         </Text>
         <Text
           style={[
             styles.Menu_tab_Text,
-            activeTab === 'Video' && styles.activeText,
+            activeTab === 'Flashsale' && styles.activeText,
           ]}>
-          Video
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.Menu_tab, activeTab === 'Live' && styles.activeTab]}
-        onPress={() => handlePress('Live')}>
-        <Text style={styles.Menu_tab_Icon}>
-          <Icon
-            style={[
-              styles.Menu_tab_Icon_IconIcon,
-              activeTab === 'Mall' && styles.activeIcon,
-            ]}
-            name="video"
-            solid
-          />
-        </Text>
-        <Text
-          style={[
-            styles.Menu_tab_Text,
-            activeTab === 'Live' && styles.activeText,
-          ]}>
-          Live
+          Flash sale
         </Text>
       </TouchableOpacity>
       <TouchableOpacity

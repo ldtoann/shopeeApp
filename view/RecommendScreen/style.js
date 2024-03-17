@@ -1,19 +1,23 @@
-import {Dimensions, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   horizontalLine: {
     paddingVertical: 5,
     paddingHorizontal: 10,
     backgroundColor: '#242526',
   },
+  linedoc: {
+    height: '80%',
+    width: 1,
+    backgroundColor: 'gray',
+  },
+  container: {
+    flex: 1,
+  },
   Line: {
     height: 0.3,
     backgroundColor: 'white',
   },
-  //   --------------------
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
+
   recommend_header: {
     backgroundColor: 'white',
     flexDirection: 'row',
@@ -25,14 +29,13 @@ const styles = StyleSheet.create({
   },
   recommend_header_input: {},
   recommend_header_search: {
-    borderColor: '#EE4E2E',
-    borderWidth: 1,
     width: 300,
     height: 37,
     fontSize: 13,
     fontWeight: '700',
     paddingHorizontal: 10,
-    borderRadius: 10,
+    borderRadius: 3,
+    backgroundColor: '#D2D2D2',
   },
   recommend_header_nav: {
     flexDirection: 'row',
@@ -43,152 +46,159 @@ const styles = StyleSheet.create({
     fontSize: 25,
     color: '#EE4E2E',
   },
-  //   ----------------------------
-  Notification_Title: {
-    backgroundColor: '#242526',
-    flexDirection: 'row',
-    paddingLeft: 10,
-    gap: 10,
-  },
-  Notification_Title2: {
-    backgroundColor: '#242526',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: 10,
-    gap: 10,
-  },
-  Notification_Title_Text: {
-    color: 'white',
-    fontWeight: '700',
-    fontSize: 18,
-    marginVertical: 12,
-    backgroundColor: '#494A54',
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    borderRadius: 20,
-  },
-  Notification_Title2_Text1: {
-    color: 'white',
-    fontWeight: '700',
-    fontSize: 22,
-  },
-  Notification_Title2_Text2: {
-    color: '#2374E1',
-    fontSize: 17,
-    marginRight: 5,
-  },
-  Friends_List: {
-    backgroundColor: '#242526',
-  },
-  Friends_Item: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    gap: 15,
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-  },
-  Friends_Item_Image: {
+  recommend_menuList: {
+    backgroundColor: '#FFD404',
     position: 'relative',
   },
-  Friends_Item_Image_Image: {
-    width: 95,
-    height: 95,
-    borderRadius: 50,
-  },
-  Friends_Item_Image_Icon: {
-    position: 'absolute',
-    bottom: 0,
-    right: 0,
-    backgroundColor: '#3B5999',
-    paddingHorizontal: 3,
-    paddingVertical: 2,
-    borderRadius: 20,
-  },
-  Friends_Item_Image_Icon_Icon: {
-    color: 'white',
-    fontSize: 20,
-  },
-  Friends_Item_Content: {
-    flex: 1,
-    gap: 5,
-  },
-  Friend_Item_Content_Top: {
+  recommend_menuList1: {
+    backgroundColor: 'white',
+    marginHorizontal: 10,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    gap: 15,
+    paddingVertical: 17,
+    paddingHorizontal: 10,
+    alignItems: 'center',
+    borderRadius: 10,
+    position: 'absolute',
+    top: -11,
+  },
+  recommend_menuList1_icon: {
+    fontSize: 26,
+  },
+  recommend_pay: {},
+  recommend_pay_top: {
+    flexDirection: 'row',
+    gap: 2,
     alignItems: 'center',
   },
-  Friends_Item_Content_Text: {
-    color: 'white',
+  recommend_pay_top_icon: {
     fontSize: 15,
-    maxHeight: 60,
+    color: '#EE4E2E',
   },
-  Friends_Item_Content_Name: {
+  recommend_pay_top_text: {
+    fontSize: 16,
     fontWeight: '500',
-    fontSize: 18,
+    color: 'black',
   },
-  Friends_Item_Content_Time: {
-    color: 'gray',
-    fontSize: 12,
+  recommend_pay_top_contentt: {
+    fontSize: 11,
   },
-  // Friend_Item_Content_Bottom: {
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  // },
-  Friend_Item_Content_Bottom_Button: {
+  recommend_menuList2: {
+    height: 300,
+    paddingHorizontal: 10,
+    marginTop: 70,
+  },
+  recommend_menuList2_2: {
     flexDirection: 'row',
-    gap: 10,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginTop: 15,
   },
-  Friend_Item_Content_Bottom_Button1: {
-    width: 130,
-    backgroundColor: '#2374E1',
-    paddingVertical: 8,
+  recommend_menuList2_2_item: {
+    width: 105,
+    position: 'relative',
+    alignItems: 'center',
+  },
+  recommend_menuList2_2_item2: {
+    width: 160,
+    position: 'relative',
+    alignItems: 'center',
+  },
+  recommend_menuList2_2_item_image: {
+    width: '100%',
+    height: 100,
     borderRadius: 5,
+    objectFit: 'cover',
+    borderWidth: 1,
+    borderColor: 'white',
   },
-  Friend_Item_Content_Bottom_Button2: {
-    width: 130,
-    backgroundColor: '#3A3B3C',
-    paddingVertical: 8,
-    borderRadius: 5,
+  recommend_menuList2_button: {
+    backgroundColor: 'white',
+    marginHorizontal: 10,
+    position: 'absolute',
+    bottom: -12,
+    borderRadius: 15,
+    paddingVertical: 2,
+    width: 90,
   },
-  Friend_Item_Content_Bottom_Text: {
-    color: 'white',
-    fontSize: 15,
-    fontWeight: '700',
+  recommend_menuList2_button_text: {
+    fontSize: 13,
+    color: '#EE4E2E',
+    fontWeight: '500',
     textAlign: 'center',
   },
-  Friend_Item_Content_Bottom_Text_Content: {
-    color: 'white',
-    fontSize: 15,
-    fontWeight: '700',
-    textAlign: 'left',
+  recommend_menuList2_1: {
+    // paddingHorizontal: 2,
+    paddingVertical: 15,
+    gap: 15,
   },
-  // Friend_Item_Content_Center: {
-  //   flexDirection: 'row',
-  //   alignItems: 'center',
-  // },
-  Friends_Item_Content_Center_MutualFriendContainer: {
+  recommend_menuList2_List: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 5,
+    justifyContent: 'space-between',
+    width: '100%',
+  },
+  recommend_menuList2_List_item: {
+    width: 75,
+    alignItems: 'center',
+    gap: 2,
+  },
+  recommend_menuList2_List_item_top_icon: {},
+  recommend_menuList2_List_item_bg_icon: {
+    backgroundColor: 'white',
+    borderRadius: 5,
+    width: 40,
+    height: 40,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  recommend_menuList2_List_item_icon: {
+    fontSize: 25,
+    color: '#EE4E2E',
+  },
+  recommend_menuList2_List_item_text: {
+    fontSize: 12,
+    color: 'black',
+  },
+  recommend_flashSale: {
+    backgroundColor: 'white',
+    marginVertical: 10,
+  },
+  recommend_flashSale_top: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    borderBottomWidth: 0.5,
+    borderColor: 'gray',
+  },
+  recommend_flashSale_top_left: {
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 5,
   },
-  Friends_Item_Content_Center_MutualFriend: {
+  recommend_flashSale_top_left_text: {
+    fontSize: 18,
+    color: '#EE4E2E',
+    fontWeight: '700',
+  },
+  recommend_flashSale_top_left_time: {
+    fontSize: 15,
+    color: 'white',
+    backgroundColor: 'black',
+    fontWeight: '500',
+    paddingHorizontal: 5,
+  },
+  recommend_flashSale_top_right: {
     flexDirection: 'row',
     alignItems: 'center',
+    gap: 5,
   },
-  Friends_Item_Image_MutualFriend: {
-    width: 30,
-    height: 30,
-    marginLeft: -7,
-    borderRadius: 15,
-    borderWidth: 3,
-    borderColor: '#242526',
-  },
-  Friends_Item_Content_Sl_MutualFriend: {
-    fontSize: 13,
-    color: 'white',
+  recommend_flashSale_top_right_text: {},
+  recommend_flashSale_top_right_icon: {},
+  recommend_flashSale_bottom: {
+    paddingLeft: 10,
   },
 });
 export default styles;
