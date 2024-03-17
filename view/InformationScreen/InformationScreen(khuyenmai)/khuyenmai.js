@@ -21,11 +21,8 @@ const ScreenInformation = ({navigation}) => {
   const navigateMall = () => {
     navigation.navigate('mall');
   };
-  const navigateVideo = () => {
-    navigation.navigate('video');
-  };
-  const navigateLive = () => {
-    navigation.navigate('live');
+  const navigateFlashsale = () => {
+    navigation.navigate('flashsale');
   };
   const navigateInformation = () => {
     navigation.navigate('information');
@@ -343,8 +340,7 @@ const ScreenInformation = ({navigation}) => {
       <Menu
         goRecommend={navigateRecommend}
         goMall={navigateMall}
-        goVideo={navigateVideo}
-        goLive={navigateLive}
+        goFlashsale={navigateFlashsale}
         goInformation={navigateInformation}
         goUser={navigateUser}
       />

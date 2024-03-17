@@ -24,10 +24,7 @@ const ScreenInformation = ({navigation}) => {
     navigation.navigate('mall');
   };
   const navigateVideo = () => {
-    navigation.navigate('video');
-  };
-  const navigateLive = () => {
-    navigation.navigate('live');
+    navigation.navigate('flashsale');
   };
   const navigateInformation = () => {
     navigation.navigate('information');
