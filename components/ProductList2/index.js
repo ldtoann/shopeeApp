@@ -1,18 +1,13 @@
 'use strict';
 import React, {useState} from 'react';
-import {
-  FlatList,
-  Image,
-  ScrollView,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {FlatList, Image, Text, TouchableOpacity, View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import styles from './style';
+import {useNavigation} from '@react-navigation/native';
 
 const Index = () => {
+  const navigation = useNavigation();
   const productData = [
     {
       id: '01',
@@ -57,7 +52,14 @@ const Index = () => {
     },
   ];
   const renderItem = ({item}) => (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() =>
+        navigation.push('product', {
+          productName: item.productName,
+          price: item.price,
+          image1: item.image1,
+        })
+      }>
       <View style={styles.product_item}>
         <Image style={styles.product_image} source={item.image1} />
         <Text

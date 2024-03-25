@@ -13,6 +13,7 @@ import Khuyenmai from './InformationScreen/InformationScreen(khuyenmai)/khuyenma
 import Informationline from './InformationLineScreen/informationline';
 import Flashsale from './FlashsaleScreen/flashsale';
 import Login from './LoginScreen/login';
+import Product from './ProductScreen/product';
 
 const Stack = createNativeStackNavigator();
 
@@ -34,6 +35,7 @@ const RootComponent = () => {
         <Stack.Screen name="khuyenmai" component={Khuyenmai} />
         <Stack.Screen name="informationline" component={Informationline} />
         <Stack.Screen name="flashsale" component={Flashsale} />
+        <Stack.Screen name="product" component={Product} />
       </Stack.Navigator>
     </NavigationContainer>
   );
