@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   FlatList,
   SafeAreaView,
@@ -7,14 +7,31 @@ import {
   View,
   ImageBackground,
   Image,
+  Alert,
 } from 'react-native';
 import Menu from '../../components/Menu/index';
 import styles from './style';
 import ProductList1 from '../../components/ProductList1/index';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const ScreenUser = ({navigation}) => {
+const ScreenUser = ({navigation, route}) => {
+  const [userInfo, setUserInfo] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Đọc thông tin người dùng từ AsyncStorage khi truy cập trang user
+    AsyncStorage.getItem('userInfo')
+      .then(userInfo => {
+        if (userInfo) {
+          setUserInfo(JSON.parse(userInfo));
+          setIsLoggedIn(true); // Đã đăng nhập
+        }
+      })
+      .catch(error => console.error('Error retrieving user info:', error));
+  }, []);
+
   const navigateRecommend = () => {
     navigation.navigate('recommend');
   };
@@ -27,8 +44,23 @@ const ScreenUser = ({navigation}) => {
   const navigateInformation = () => {
     navigation.navigate('information');
   };
-  const navigateUser = () => {
+  const navigateLogin = () => {
     navigation.navigate('user');
+  };
+  const navigateLoginnnn = () => {
+    navigation.navigate('login');
+  };
+  const navigateEditUser = () => {
+    navigation.navigate('edituser');
+  };
+  const handleLogout = () => {
+    AsyncStorage.removeItem('userInfo')
+      .then(() => {
+        Alert.alert('Đăng xuất thành công');
+        navigation.navigate('recommend');
+        setUserInfo(null);
+      })
+      .catch(error => console.error('Error logging out:', error));
   };
 
   const data = [{type: 'NoRepeat'}, {type: 'Repeat'}];
@@ -36,81 +68,143 @@ const ScreenUser = ({navigation}) => {
     if (item.type === 'NoRepeat') {
       return (
         <View>
-          <View style={styles.user_top}>
-            <View style={styles.user_top_bg}>
-              <Image
-                style={styles.user_top_bg_image}
-                source={require('../../src/public/userBG.png')}
-              />
-            </View>
-            <View style={styles.user_top_content}>
-              <View style={styles.user_top_content_nav}>
-                <TouchableOpacity>
-                  <Ionicons style={styles.user_header_nav_icon} name="cog" />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Ionicons style={styles.user_header_nav_icon} name="cart" />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                  <Ionicons
-                    style={styles.user_header_nav_icon}
-                    name="chatbubbles"
-                  />
-                </TouchableOpacity>
+          {isLoggedIn ? (
+            <View style={styles.user_top}>
+              <View style={styles.user_top_bg}>
+                <Image
+                  style={[styles.user_top_bg_image, {opacity: 0.5}]}
+                  source={{uri: userInfo.avatar}}
+                />
               </View>
-              <View style={styles.user_top_content_info}>
-                <View style={styles.user_top_content_info_ava}>
-                  <Image
-                    style={styles.user_top_ava}
-                    source={require('../../src/public/userAVA.png')}
-                  />
-                </View>
-                <View style={styles.user_top_content_info_info}>
-                  <Text style={styles.user_top_content_info_info_name}>
-                    ToanLee1311
-                  </Text>
-                  <TouchableOpacity>
-                    <Text style={styles.user_top_content_info_info_rank}>
-                      Thành viên kim cương
-                    </Text>
+              <View style={styles.user_top_content}>
+                <View style={styles.user_top_content_nav}>
+                  <TouchableOpacity onPress={navigateEditUser}>
+                    <Ionicons style={styles.user_header_nav_icon} name="cog" />
                   </TouchableOpacity>
-                  <View style={styles.user_top_content_info_info_follower}>
-                    <TouchableOpacity
-                      style={styles.user_top_content_info_info_follower_member}>
-                      <Text
-                        style={
-                          styles.user_top_content_info_info_follower_member_text
-                        }>
-                        Người theo
-                      </Text>
-                      <Text
-                        style={
-                          styles.user_top_content_info_info_follower_member_number
-                        }>
-                        99.999
+                  <TouchableOpacity>
+                    <Ionicons style={styles.user_header_nav_icon} name="cart" />
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Ionicons
+                      style={styles.user_header_nav_icon}
+                      name="chatbubbles"
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.user_top_content_info}>
+                  <View style={styles.user_top_content_info_ava}>
+                    <Image
+                      style={styles.user_top_ava}
+                      source={{uri: userInfo.avatar}}
+                    />
+                  </View>
+                  <View style={styles.user_top_content_info_info}>
+                    <TouchableOpacity>
+                      <Text style={styles.user_top_content_info_info_name}>
+                        {userInfo.name}
                       </Text>
                     </TouchableOpacity>
-                    <View style={styles.linedoc}></View>
-                    <TouchableOpacity
-                      style={styles.user_top_content_info_info_follower_member}>
-                      <Text
-                        style={
-                          styles.user_top_content_info_info_follower_member_text
-                        }>
-                        Đang theo dõi
+                    <TouchableOpacity>
+                      <Text style={styles.user_top_content_info_info_rank}>
+                        {userInfo.rank}
                       </Text>
+                    </TouchableOpacity>
+                    <View style={styles.user_top_content_info_info_follower}>
+                      <TouchableOpacity
+                        style={
+                          styles.user_top_content_info_info_follower_member
+                        }>
+                        <Text
+                          style={
+                            styles.user_top_content_info_info_follower_member_text
+                          }>
+                          Người theo
+                        </Text>
+                        <Text
+                          style={
+                            styles.user_top_content_info_info_follower_member_number
+                          }>
+                          99.999
+                        </Text>
+                      </TouchableOpacity>
+                      <View style={styles.linedoc}></View>
+                      <TouchableOpacity
+                        style={
+                          styles.user_top_content_info_info_follower_member
+                        }>
+                        <Text
+                          style={
+                            styles.user_top_content_info_info_follower_member_text
+                          }>
+                          Đang theo dõi
+                        </Text>
+                        <Text
+                          style={
+                            styles.user_top_content_info_info_follower_member_number
+                          }>
+                          10.000
+                        </Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            </View>
+          ) : (
+            <View style={styles.user_top}>
+              <View style={styles.user_top_bg}>
+                <Image
+                  style={styles.user_top_bg_image}
+                  source={require('../../src/public/adminBG.png')}
+                />
+              </View>
+              <View style={styles.user_top_content}>
+                <View style={styles.user_top_content_nav}>
+                  <TouchableOpacity>
+                    <Ionicons style={styles.user_header_nav_icon} name="cog" />
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Ionicons style={styles.user_header_nav_icon} name="cart" />
+                  </TouchableOpacity>
+                  <TouchableOpacity>
+                    <Ionicons
+                      style={styles.user_header_nav_icon}
+                      name="chatbubbles"
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.user_top_content_info_admin}>
+                  <View style={styles.user_top_content_info_ava_admin}>
+                    <Image
+                      style={styles.user_top_ava_admin}
+                      source={require('../../src/public/admin.png')}
+                    />
+                  </View>
+                  <View style={styles.user_top_content_info_info_admin}>
+                    <TouchableOpacity
+                      style={styles.user_top_content_info_info_btn_admin}
+                      onPress={navigateLoginnnn}>
                       <Text
                         style={
-                          styles.user_top_content_info_info_follower_member_number
+                          styles.user_top_content_info_info_btn_admin_text
                         }>
-                        10.000
+                        Đăng nhập
+                      </Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                      style={styles.user_top_content_info_info_btn_admin}>
+                      <Text
+                        style={
+                          styles.user_top_content_info_info_btn_admin_text
+                        }>
+                        Đăng kí
                       </Text>
                     </TouchableOpacity>
                   </View>
                 </View>
               </View>
             </View>
-          </View>
+          )}
           <View style={styles.user_main}>
             <View style={styles.user_main_livesieusale}>
               <Icon
@@ -119,7 +213,7 @@ const ScreenUser = ({navigation}) => {
                 solid
               />
               <Text style={styles.user_main_livesieusale_text}>
-                3.3 Shopee Live - Siêu Sale
+                4.4 Shopee Live - Siêu Sale
               </Text>
             </View>
             <View style={styles.linengang}></View>
@@ -779,6 +873,32 @@ const ScreenUser = ({navigation}) => {
                 </View>
               </TouchableOpacity>
             </View>
+            <View style={styles.linengang}></View>
+            <View style={styles.user_main_button}>
+              <TouchableOpacity
+                style={styles.user_main_napthedichvu_btn}
+                onPress={handleLogout}>
+                <View style={styles.user_main_napthedichvu_btn_left}>
+                  <Icon
+                    style={styles.user_main_food_btn_left_icon}
+                    name="user"
+                    solid
+                  />
+                  <Text style={styles.user_main_napthedichvu_btn_left_text}>
+                    Đăng Xuất
+                  </Text>
+                </View>
+                <View style={styles.user_main_napthedichvu_btn_right}>
+                  <Text
+                    style={styles.user_main_napthedichvu_btn_right_text}></Text>
+                  <Icon
+                    style={styles.user_main_napthedichvu_btn_right_icon}
+                    name="chevron-right"
+                    solid
+                  />
+                </View>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       );
@@ -800,7 +920,7 @@ const ScreenUser = ({navigation}) => {
         goMall={navigateMall}
         goFlashsale={navigateFlashsale}
         goInformation={navigateInformation}
-        goUser={navigateUser}
+        goLogin={navigateLogin}
       />
     </SafeAreaView>
   );

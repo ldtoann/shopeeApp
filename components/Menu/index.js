@@ -3,10 +3,9 @@ import React, {useState} from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
 // import Ionicons from 'react-native-vector-icons/Ionicons';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-
 import styles from './style';
 
-const Index = ({goRecommend, goMall, goInformation, goUser, goFlashsale}) => {
+const Index = ({goRecommend, goMall, goInformation, goLogin, goFlashsale}) => {
   const [activeTab, setActiveTab] = useState('Recommend');
   const handlePress = tab => {
     setActiveTab(tab);
@@ -24,13 +23,25 @@ const Index = ({goRecommend, goMall, goInformation, goUser, goFlashsale}) => {
         goInformation();
         break;
       case 'User':
-        goUser();
+        goLogin();
         break;
+      // case 'User':
+      //   goLogin();
+      //   break;
       // Các trang khác
       default:
         break;
     }
   };
+
+  // const handlePressCHANGE = () => {
+  //   if (isLoggedIn) {
+  //     navigation.navigate('user'); // Điều hướng tới trang User nếu đã đăng nhập
+  //   } else {
+  //     navigation.navigate('login'); // Điều hướng tới trang Login nếu chưa đăng nhập
+  //   }
+  // };
+
   return (
     <View style={styles.NavMenu}>
       <TouchableOpacity
@@ -121,7 +132,7 @@ const Index = ({goRecommend, goMall, goInformation, goUser, goFlashsale}) => {
         </Text>
       </TouchableOpacity>
       <TouchableOpacity
-        style={[styles.Menu_tab, activeTab === 'User' && styles.activeTab]}
+        style={[styles.Menu_tab, activeTab === 'Login' && styles.activeTab]}
         onPress={() => handlePress('User')}>
         <Text style={styles.Menu_tab_Icon}>
           <Icon
@@ -136,11 +147,32 @@ const Index = ({goRecommend, goMall, goInformation, goUser, goFlashsale}) => {
         <Text
           style={[
             styles.Menu_tab_Text,
-            activeTab === 'User' && styles.activeText,
+            activeTab === 'Login' && styles.activeText,
           ]}>
           Tôi
         </Text>
       </TouchableOpacity>
+      {/* <TouchableOpacity
+        style={[styles.Menu_tab, activeTab === 'Login' && styles.activeTab]}
+        onPress={handlePressCHANGE}>
+        <Text style={styles.Menu_tab_Icon}>
+          <Icon
+            style={[
+              styles.Menu_tab_Icon_IconIcon,
+              activeTab === 'Mall' && styles.activeIcon,
+            ]}
+            name="user"
+            solid
+          />
+        </Text>
+        <Text
+          style={[
+            styles.Menu_tab_Text,
+            activeTab === 'Login' && styles.activeText,
+          ]}>
+          Tôi
+        </Text>
+      </TouchableOpacity> */}
     </View>
   );
 };

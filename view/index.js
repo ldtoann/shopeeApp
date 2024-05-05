@@ -13,7 +13,10 @@ import Khuyenmai from './InformationScreen/InformationScreen(khuyenmai)/khuyenma
 import Informationline from './InformationLineScreen/informationline';
 import Flashsale from './FlashsaleScreen/flashsale';
 import Login from './LoginScreen/login';
+import Register from './RegisterScreen/register';
 import Product from './ProductScreen/product';
+import EditUser from './UserScreen/EdirUserScreen/edituser';
+import Search from './SearchScreen/search';
 
 const Stack = createNativeStackNavigator();
 
@@ -25,6 +28,7 @@ const RootComponent = () => {
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="helloScreen" component={HelloScreen} />
         <Stack.Screen name="login" component={Login} />
+        <Stack.Screen name="register" component={Register} />
         <Stack.Screen name="recommend" component={Recommend} />
         <Stack.Screen name="mall" component={Mall} />
         <Stack.Screen name="video" component={Video} />
@@ -36,6 +40,8 @@ const RootComponent = () => {
         <Stack.Screen name="informationline" component={Informationline} />
         <Stack.Screen name="flashsale" component={Flashsale} />
         <Stack.Screen name="product" component={Product} />
+        <Stack.Screen name="edituser" component={EditUser} />
+        <Stack.Screen name="search" component={Search} />
       </Stack.Navigator>
     </NavigationContainer>
   );

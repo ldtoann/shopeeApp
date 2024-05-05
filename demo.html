@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .item {
+        width: 500px;
+        border: 1px solid black;
+        padding: 20px;
+      }
+
+      .info1 {
+        width: 200px;
+        height: 200px;
+        object-fit: cover;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="item_list">
+      <div class="item">
+        <p class="satisfaction">
+          Hài lòng với cách làm việc, đầy chuyên nghiệp, nghiêm túc.<br />
+          Đặt lịch tôi được tư vấn dặn dò kỹ thời điểm đặt lịch đúng giờ
+        </p>
+        <img
+          src="https://web307.webvungtau.com/wp-content/uploads/2023/03/customer-dieu-le.jpg "
+          alt="Logo 1"
+          class="info1" />
+        <div class="company-info">
+          <p class="ten01">Diệu Lê</p>
+          <p class="ten02">Công Ty vietfood</p>
+        </div>
+      </div>
+      <div class="item">
+        <p class="name1">
+          Lái xe điểm đạm lịch sự đặc biệt là khi di chuyển cảm thấy không
+          <br />
+          bị sóc giật mình, rất an tâm để có tranh thủ nghỉ trên xe
+        </p>
+        <img
+          src="https://web307.webvungtau.com/wp-content/uploads/2023/03/customer-hai-long.jpg"
+          alt="Logo 2"
+          class="info1" />
+        <div class="company-info">
+          <p class="ten3">Hải Long</p>
+          <p class="ten4">ACB Bank</p>
+        </div>
+      </div>
+      <div class="item">
+        <p>
+          Mỗi lần gia đình về quê thật sự rất phiền khi mang nhiều hành lý có
+          nhiều xe không cho mang. Nhưng thấy các bạn thoải mái
+        </p>
+        <img
+          src="https://web307.webvungtau.com/wp-content/uploads/2023/03/customer-minh-hang.jpg"
+          alt="Logo 3"
+          class="info1" />
+        <div class="company-info">
+          <p class="ten05">Minh Hằng</p>
+          <p class="ten06">Tài chính</p>
+        </div>
+      </div>
+    </div>
+    <div class="item_btn">
+      <div class="item_btn_back">back</div>
+      <div class="item_btn_next">next</div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.item');
+        const totalSlides = slides.length;
+        const nextButton = document.querySelector('.item_btn_next');
+        const backButton = document.querySelector('.item_btn_back');
+        function showSlide(index) {
+          slides.forEach((slide, i) => {
+            if (i === index) {
+              slide.style.display = 'block';
+            } else {
+              slide.style.display = 'none';
+            }
+          });
+        }
+        function nextSlide() {
+          currentSlide = (currentSlide + 1) % totalSlides;
+          showSlide(currentSlide);
+        }
+        function previousSlide() {
+          currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+          showSlide(currentSlide);
+        }
+        nextButton.addEventListener('click', nextSlide);
+        backButton.addEventListener('click', previousSlide);
+        showSlide(currentSlide);
+      });
+    </script>
+  </body>
+</html>

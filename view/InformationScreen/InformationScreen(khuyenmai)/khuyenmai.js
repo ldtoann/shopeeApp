@@ -27,7 +27,7 @@ const ScreenInformation = ({navigation}) => {
   const navigateInformation = () => {
     navigation.navigate('information');
   };
-  const navigateUser = () => {
+  const navigateLogin = () => {
     navigation.navigate('user');
   };
   const handleGoBack = () => {
@@ -342,7 +342,7 @@ const ScreenInformation = ({navigation}) => {
         goMall={navigateMall}
         goFlashsale={navigateFlashsale}
         goInformation={navigateInformation}
-        goUser={navigateUser}
+        goLogin={navigateLogin}
       />
     </SafeAreaView>
   );

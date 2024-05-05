@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import {
   FlatList,
   SafeAreaView,
@@ -8,6 +8,8 @@ import {
   TextInput,
   Image,
   ScrollView,
+  Animated,
+  Dimensions,
 } from 'react-native';
 import Menu from '../../components/Menu/index';
 import ProductList1 from '../../components/ProductList1/index';
@@ -21,7 +23,15 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Product = ({route, navigation}) => {
-  const {productName, price, image1} = route.params;
+  const {
+    product_name,
+    product_price,
+    product_image1,
+    product_image2,
+    product_image3,
+    product_image4,
+    product_image5,
+  } = route.params;
   const [showFullContent, setShowFullContent] = useState(false);
   const handleToggleContent = () => {
     setShowFullContent(!showFullContent);
@@ -38,25 +48,82 @@ const Product = ({route, navigation}) => {
   const navigateInformation = () => {
     navigation.navigate('information');
   };
-  const navigateUser = () => {
+  const navigateLogin = () => {
     navigation.navigate('user');
   };
   const handleGoBack = () => {
     navigation.goBack();
   };
   const data = [{type: 'NoScroll'}, {type: 'Scroll'}];
-
+  const images = [
+    product_image1,
+    product_image2,
+    product_image3,
+    product_image4,
+    product_image5,
+  ];
+  const scrollX = useRef(new Animated.Value(0)).current;
+  const {width: windowWidth} = Dimensions.get('window');
   const renderItem = ({item, index}) => {
     if (item.type === 'NoScroll') {
       return <View></View>;
     } else if (item.type === 'Scroll') {
       return (
         <View>
-          <View style={styles.productItem_image}>
-            <Image source={image1} style={styles.productItem_image_image} />
+          <View style={styles.img_topp}>
+            <ScrollView
+              horizontal
+              pagingEnabled
+              showsHorizontalScrollIndicator={false}
+              onScroll={Animated.event(
+                [{nativeEvent: {contentOffset: {x: scrollX}}}],
+                {useNativeDriver: false},
+              )}
+              scrollEventThrottle={16}>
+              {images.map((image, index) => (
+                <Image
+                  key={index}
+                  source={{uri: image}}
+                  style={{width: windowWidth, height: 400}}
+                />
+              ))}
+            </ScrollView>
+            <Animated.View
+              style={{
+                flexDirection: 'row',
+                position: 'absolute',
+                bottom: 10,
+                alignSelf: 'center',
+              }}>
+              {images.map((_, index) => {
+                const opacity = scrollX.interpolate({
+                  inputRange: [
+                    (index - 1) * windowWidth,
+                    index * windowWidth,
+                    (index + 1) * windowWidth,
+                  ],
+                  outputRange: [0.3, 1, 0.3],
+                  extrapolate: 'clamp',
+                });
+
+                return (
+                  <Animated.View
+                    key={index}
+                    style={{
+                      opacity,
+                      height: 10,
+                      width: 10,
+                      backgroundColor: 'black',
+                      margin: 8,
+                      borderRadius: 5,
+                    }}
+                  />
+                );
+              })}
+            </Animated.View>
           </View>
           <View style={styles.productItem_price}>
-            <Text style={styles.productItem_price_price}>đ{price}</Text>
+            <Text style={styles.productItem_price_price}>đ{product_price}</Text>
             <Text style={styles.productItem_price_spaylater}>
               Giảm giá khi mua với voucher 🏷
             </Text>
@@ -66,7 +133,7 @@ const Product = ({route, navigation}) => {
             <Text style={styles.productItem_price_giff}>Mua để nhận quà</Text>
           </View>
           <View style={styles.productItem_name}>
-            <Text style={styles.productItem_name_name}>{productName}</Text>
+            <Text style={styles.productItem_name_name}>{product_name}</Text>
           </View>
           <View style={styles.productItem_vote}>
             <View style={styles.productItem_vote_left}>
@@ -91,7 +158,10 @@ const Product = ({route, navigation}) => {
           </View>
           <View style={styles.inforShop}>
             <View style={styles.inforShop_left}>
-              <Image source={image1} style={styles.inforShop_left_avaShop} />
+              <Image
+                source={{uri: product_image1}}
+                style={styles.inforShop_left_avaShop}
+              />
               <View style={styles.inforShop_left_content}>
                 <Text style={styles.inforShop_name}>Lavis.store</Text>
                 <Text style={styles.inforShop_online}>
@@ -257,7 +327,7 @@ const Product = ({route, navigation}) => {
         goMall={navigateMall}
         goFlashsale={navigateFlashsale}
         goInformation={navigateInformation}
-        goUser={navigateUser}
+        goLogin={navigateLogin}
       />
     </SafeAreaView>
   );

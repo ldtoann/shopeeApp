@@ -61,11 +61,14 @@ const styles = StyleSheet.create({
     color: '#EE4E2E',
     fontWeight: '700',
   },
-  productItem_image: {},
-  productItem_image_image: {
+  productItem_image: {
     width: '100%',
     height: 400,
-    objectFit: 'contain',
+  },
+  productItem_image_image: {
+    // width: '100%',
+    // height: 400,
+    resizeMode: 'contain',
   },
   productItem_price: {
     padding: 10,

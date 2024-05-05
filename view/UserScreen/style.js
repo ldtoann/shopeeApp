@@ -19,6 +19,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 170,
     gap: 20,
+    bottom: 0,
   },
   user_top_content_nav: {
     flexDirection: 'row',
@@ -248,6 +249,40 @@ const styles = StyleSheet.create({
   },
   user_main_button_sale: {
     backgroundColor: '#FACBC1',
+  },
+  user_top_content_info_admin: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
+    paddingHorizontal: 15,
+  },
+  user_top_content_info_ava_admin: {},
+  user_top_ava_admin: {
+    width: 75,
+    height: 75,
+    borderRadius: 40,
+    borderWidth: 1,
+    borderColor: 'white',
+  },
+  user_top_content_info_info_admin: {
+    flexDirection: 'row',
+    gap: 10,
+  },
+  user_top_content_info_info_btn_admin: {
+    width: 100,
+    height: 35,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+    borderWidth: 1,
+    borderRadius: 10,
+    borderColor: 'black',
+  },
+  user_top_content_info_info_btn_admin_text: {
+    color: '#EF4C29',
+    fontWeight: '700',
+    fontSize: 13,
   },
 });
 export default styles;

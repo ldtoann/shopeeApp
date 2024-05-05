@@ -27,15 +27,25 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     gap: 10,
   },
-  recommend_header_input: {},
+  recommend_header_input: {
+    flexDirection: 'row',
+    borderWidth: 1,
+    alignItems: 'center',
+    borderColor: 'gray',
+    borderRadius: 5,
+  },
   recommend_header_search: {
-    width: 300,
+    width: 270,
     height: 37,
     fontSize: 13,
     fontWeight: '700',
     paddingHorizontal: 10,
     borderRadius: 3,
-    backgroundColor: '#D2D2D2',
+    backgroundColor: 'white',
+  },
+  icon_eye: {
+    fontSize: 25,
+    marginRight: 10,
   },
   recommend_header_nav: {
     flexDirection: 'row',

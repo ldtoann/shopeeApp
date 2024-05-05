@@ -18,7 +18,7 @@ const Live = ({navigation}) => {
   const navigateInformation = () => {
     navigation.navigate('information');
   };
-  const navigateUser = () => {
+  const navigateLogin = () => {
     navigation.navigate('user');
   };
   return (
@@ -30,7 +30,7 @@ const Live = ({navigation}) => {
         goVideo={navigateVideo}
         goLive={navigateLive}
         goInformation={navigateInformation}
-        goUser={navigateUser}
+        goLogin={navigateLogin}
       />
     </View>
   );

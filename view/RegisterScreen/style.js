@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   section_more: {
-    marginTop: 350,
+    marginTop: 90,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
