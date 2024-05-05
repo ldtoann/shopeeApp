@@ -24,7 +24,7 @@ const Index = () => {
     {
       id: '02',
       productName:
-        'Áo khoác kaki nhẹ brand us n them chính hãng brand hàn quốc form boxy fit thoải mái gọn gàng trẻ trung lịch sự trending',
+        'Áo khoác kaki jeans brand usatheme chính hãng brand hàn quốc form boxy fit thoải mái gọn gàng trẻ trung lịch sự trending',
       price: '399.000',
       image1: require('../../src/public/product2.png'),
     },

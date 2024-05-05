@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   FlatList,
   SafeAreaView,
@@ -7,6 +7,7 @@ import {
   View,
   TextInput,
   Image,
+  PermissionsAndroid,
 } from 'react-native';
 import Menu from '../../components/Menu/index';
 import ProductList2 from '../../components/ProductList2/index';
@@ -15,6 +16,8 @@ import Carousel from '../../components/Carousel/index';
 import styles from './style';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {launchCamera} from 'react-native-image-picker';
 
 const Recommend = ({navigation}) => {
   const navigateRecommend = () => {
@@ -29,9 +32,49 @@ const Recommend = ({navigation}) => {
   const navigateInformation = () => {
     navigation.navigate('information');
   };
-  const navigateUser = () => {
+  const navigateLogin = () => {
     navigation.navigate('user');
   };
+  const navigateSearch = () => {
+    navigation.navigate('search');
+  };
+
+  // const [imgSearch, setImgSearch] = useState('');
+
+  // const requestCameraPermission = async () => {
+  //   try {
+  //     const granted = await PermissionsAndroid.request(
+  //       PermissionsAndroid.PERMISSIONS.CAMERA,
+  //     );
+  //     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+  //       console.log('Camera permission given');
+  //       const result = await launchCamera({
+  //         mediaType: 'photo',
+  //         cameraType: 'front',
+  //       });
+  //       setImgSearch(result.assets[0].uri);
+  //     } else {
+  //       console.log('Camera permission denied');
+  //     }
+  //   } catch (err) {
+  //     console.warn(err);
+  //   }
+  // };
+
+  const [userInfo, setUserInfo] = useState(null);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Đọc thông tin người dùng từ AsyncStorage khi truy cập
+    AsyncStorage.getItem('userInfo')
+      .then(userInfo => {
+        if (userInfo) {
+          setUserInfo(JSON.parse(userInfo));
+          setIsLoggedIn(true); // Đã đăng nhập
+        }
+      })
+      .catch(error => console.error('Error retrieving user info:', error));
+  }, []);
 
   const data = [{type: 'NoScroll'}, {type: 'Scroll'}];
 
@@ -70,7 +113,13 @@ const Recommend = ({navigation}) => {
                     style={styles.recommend_pay_top_icon}
                     name="logo-usd"
                   />
-                  <Text style={styles.recommend_pay_top_text}>9999</Text>
+                  {isLoggedIn ? (
+                    <Text style={styles.recommend_pay_top_text}>
+                      {userInfo.asset}
+                    </Text>
+                  ) : (
+                    <Text style={styles.recommend_pay_top_text}>999999</Text>
+                  )}
                 </View>
                 <Text style={styles.recommend_pay_top_contentt}>
                   Nhấn để nhận xu mỗi ngày !
@@ -307,16 +356,18 @@ const Recommend = ({navigation}) => {
     }
     return null;
   };
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.recommend_header}>
         <View style={styles.recommend_header_input}>
           <TextInput
+            style={styles.recommend_header_search}
             placeholder="Tìm kiếm sản phẩm ..."
             placeholderTextColor="#EE4E2E"
-            style={styles.recommend_header_search}
           />
+          <TouchableOpacity onPress={navigateSearch}>
+            <Ionicons style={styles.icon_eye} name="camera" />
+          </TouchableOpacity>
         </View>
         <View style={styles.recommend_header_nav}>
           <TouchableOpacity>
@@ -343,10 +394,24 @@ const Recommend = ({navigation}) => {
         goMall={navigateMall}
         goFlashsale={navigateFlashsale}
         goInformation={navigateInformation}
-        goUser={navigateUser}
+        goLogin={navigateLogin}
       />
     </SafeAreaView>
   );
 };
 
 export default Recommend;
+// const requestCameraPermission = async () => {
+//   try {
+//     const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.CAMERA);
+//     if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+//       console.log("Camera permission given");
+//       const result:any = await launchCamera({mediaType:'photo',cameraType:'front'})
+//       setImg(result.assets[0].uri);
+//     } else {
+//       console.log("Camera permission denied");
+//     }
+//   } catch (err) {
+//     console.warn(err);
+//   }
+// };

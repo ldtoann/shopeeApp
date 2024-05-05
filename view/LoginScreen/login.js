@@ -10,17 +10,49 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import styles from './style';
-// import FontAwesome, {SolidIcons} from 'react-native-fontawesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [getPasswordVisible, setPasswordVisible] = useState(false);
+
   const handleLoginPress = () => {
-    navigation.navigate('recommend');
-    // Alert.alert('Đăng nhập thành công');
+    axios
+      .get(
+        `https://660d12f03a0766e85dbf7afb.mockapi.io/ShopeeAppClone/account?search=${email}`,
+      )
+      .then(response => {
+        console.log(response.data);
+        if (response.data.length > 0) {
+          const user = response.data[0];
+          if (user.password === password) {
+            // Lưu thông tin người dùng vào AsyncStorage
+            AsyncStorage.setItem('userInfo', JSON.stringify(user))
+              .then(() => {
+                console.log('User info saved successfully');
+                Alert.alert('Đăng nhập thành công');
+                navigation.navigate('recommend', {userInfo: user});
+              })
+              .catch(error => {
+                console.error('Error saving user info:', error);
+                Alert.alert('Đã xảy ra lỗi trong quá trình đăng nhập');
+              });
+          } else {
+            Alert.alert('Đăng nhập thất bại', 'Mật khẩu không chính xác');
+          }
+        } else {
+          Alert.alert('Đăng nhập thất bại', 'Email không tồn tại');
+        }
+      })
+      .catch(error => {
+        console.error('Error during login:', error);
+        Alert.alert('Đã xảy ra lỗi trong quá trình đăng nhập');
+      });
   };
+
   return (
     <View>
       <ImageBackground
@@ -66,9 +98,6 @@ const Login = ({navigation}) => {
               <View style={styles.section_button}>
                 <TouchableOpacity
                   style={styles.section_button_login}
-                  // onPress={() => {
-                  //   navigation.navigate('Facebook');
-                  // }}
                   onPress={handleLoginPress}>
                   <Text style={styles.section_button_login_text}>
                     ĐĂNG NHẬP
@@ -77,7 +106,12 @@ const Login = ({navigation}) => {
               </View>
             </View>
             <View style={styles.section_more}>
-              <Text style={styles.section_more_register}>Đăng ký</Text>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('register');
+                }}>
+                <Text style={styles.section_more_register}>Đăng ký</Text>
+              </TouchableOpacity>
               <Text style={styles.section_more_register}>Cần trợ giúp?</Text>
             </View>
           </View>
